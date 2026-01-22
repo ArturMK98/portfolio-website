@@ -8,15 +8,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 
+import io.github.arturkarolewski.portfolio.model.Project;
+import io.github.arturkarolewski.portfolio.service.ProjectService;
+
 @Controller
 public class HomeController {
+
+    private final ProjectService projectService;
+
+
     @GetMapping("/")
     public String home(Model model) {
-        List<Project> projects = getProjects();
+        List<Project> projects = projectService.getProjects();
         model.addAttribute("featured", projects.stream().limit(2).toList());
         return "index";
     }
-
 
     @GetMapping("/contact")
     public String contact() {
@@ -25,42 +31,23 @@ public class HomeController {
 
     @GetMapping("/projects/{slug}")
     public String projectDetail(@org.springframework.web.bind.annotation.PathVariable String slug, Model model) {
-    Project project = getProjects().stream()
-        .filter(p -> p.slug().equals(slug))
-        .findFirst()
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Project project = projectService.getBySlug(slug);
 
-    model.addAttribute("project", project);
-    return "project-detail";
-}
-
+        if (project == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        model.addAttribute("project", project);
+        return "project-detail";
+    }
 
     @GetMapping("/projects")
     public String projects(Model model) {
-        model.addAttribute("projects", getProjects());
+        model.addAttribute("projects", projectService.getProjects());
         return "projects";
     }
 
-    private List<Project> getProjects() {
-    return List.of(
-        new Project(
-            "portfolio-website",
-            "Portfolio Website",
-            "Spring Boot + Thymeleaf portfolio site with reusable layout and Bootstrap UI.",
-            List.of("Java", "Spring Boot", "Thymeleaf", "Bootstrap"),
-            "https://github.com/ArturMK98/portfolio-website",
-            "/img/portfolio.png"
-        ),
-        new Project(
-            "canvaslite-poc",
-            "CanvasLite (POC)",
-            "Proof-of-concept web app focused on core flows and clean MVC structure.",
-            List.of("Spring MVC", "Bootstrap", "POC"),
-            "",
-            "/img/canvaslite_temp.png"
-        )
-    );
-}
 
-
+    public HomeController(ProjectService projectService) {
+        this.projectService = projectService;
+    }
 }

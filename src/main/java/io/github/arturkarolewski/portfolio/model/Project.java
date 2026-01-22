@@ -1,4 +1,4 @@
-package io.github.arturkarolewski.portfolio;
+package io.github.arturkarolewski.portfolio.model;
 
 import java.util.List;
 
