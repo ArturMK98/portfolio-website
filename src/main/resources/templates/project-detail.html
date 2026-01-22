@@ -1,0 +1,27 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:replace="~{layout :: layout(${project.title()}, ~{::section})}">
+  <section>
+    <a class="btn btn-sm btn-outline-secondary mb-3" th:href="@{/projects}">← Back to Projects</a>
+
+    <h1 class="mb-2" th:text="${project.title()}">Project title</h1>
+    <p class="lead" th:text="${project.description()}">Description</p>
+
+    <div class="d-flex gap-2 flex-wrap mb-3">
+      <span class="badge text-bg-secondary"
+            th:each="t : ${project.tags()}"
+            th:text="${t}">Tag</span>
+    </div>
+
+    <a class="btn btn-primary"
+       th:if="${project.url() != null and !project.url().isBlank()}"
+       th:href="${project.url()}"
+       target="_blank" rel="noreferrer">
+      View Repo
+    </a>
+  </section>
+</div>
+</body>
+</html>
