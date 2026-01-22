@@ -7,5 +7,6 @@ public record Project(
         String title,
         String description,
         List<String> tags,
-        String url
+        String url,
+        String image
 ) {}

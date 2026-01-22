@@ -8,6 +8,30 @@
     <p class="lead">Explore my projects and skills.</p>
     <a class="btn btn-primary" th:href="@{/projects}">See Projects</a>
   </section>
+  
+  <section class="mt-4">
+  <h2 class="h4 mb-3">Featured Projects</h2>
+
+  <div class="row g-3">
+    <div class="col-md-6" th:each="p : ${featured}">
+      <div class="card h-100">
+        <img th:if="${p.image() != null and !p.image().isBlank()}"
+             th:src="@{${p.image()}}"
+             class="card-img-top" alt="Project image">
+
+        <div class="card-body">
+          <h5 class="card-title" th:text="${p.title()}">Title</h5>
+          <p class="card-text" th:text="${p.description()}">Desc</p>
+
+          <a class="btn btn-primary btn-sm"
+             th:href="@{/projects/{slug}(slug=${p.slug()})}">
+            View
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
 
 </body>

@@ -9,6 +9,10 @@
     <div class="row g-4">
       <div class="col-md-6" th:each="p : ${projects}">
         <div class="card h-100">
+          <img th:if="${p.image() != null and !p.image().isBlank()}"
+               th:src="${p.image()}"
+               class="card-img-top"
+               alt="Project image">
           <div class="card-body">
             <a th:href="@{'/projects/' + ${p.slug()}}" class="text-decoration-none">
               <h5 class="card-title" th:text="${p.title()}">Project Title</h5>

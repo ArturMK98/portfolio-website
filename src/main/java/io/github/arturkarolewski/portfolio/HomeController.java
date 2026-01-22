@@ -11,9 +11,12 @@ import org.springframework.http.HttpStatus;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        List<Project> projects = getProjects();
+        model.addAttribute("featured", projects.stream().limit(2).toList());
         return "index";
     }
+
 
     @GetMapping("/contact")
     public String contact() {
@@ -40,15 +43,21 @@ public class HomeController {
 
     private List<Project> getProjects() {
     return List.of(
-        new Project("portfolio-website", "Portfolio Website",
+        new Project(
+            "portfolio-website",
+            "Portfolio Website",
             "Spring Boot + Thymeleaf portfolio site with reusable layout and Bootstrap UI.",
             List.of("Java", "Spring Boot", "Thymeleaf", "Bootstrap"),
-            "https://github.com/ArturMK98/portfolio-website"
+            "https://github.com/ArturMK98/portfolio-website",
+            "/img/portfolio.png"
         ),
-        new Project("canvaslite-poc", "CanvasLite (POC)",
+        new Project(
+            "canvaslite-poc",
+            "CanvasLite (POC)",
             "Proof-of-concept web app focused on core flows and clean MVC structure.",
             List.of("Spring MVC", "Bootstrap", "POC"),
-            ""
+            "",
+            "/img/canvaslite_temp.png"
         )
     );
 }
