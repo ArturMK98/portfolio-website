@@ -4,58 +4,32 @@
 
 <div th:replace="~{layout :: layout('Projects', ~{::section})}">
   <section>
-    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
-      <h1 class="mb-0">Projects</h1>
-      <a class="btn btn-outline-secondary" href="https://github.com/ArturMK98" target="_blank" rel="noreferrer">
-        GitHub
-      </a>
-    </div>
+    <h1 class="mb-3">Projects</h1>
 
     <div class="row g-3">
-
-      <!-- Project 1 -->
-      <div class="col-md-6">
+      <div class="col-md-6" th:each="p : ${projects}">
         <div class="card h-100">
           <div class="card-body">
-            <h5 class="card-title">Portfolio Website</h5>
-            <p class="card-text">
-              Spring Boot + Thymeleaf portfolio site with reusable layout and Bootstrap UI.
-            </p>
+            <h5 class="card-title" th:text="${p.title()}">Project Title</h5>
+            <p class="card-text" th:text="${p.description()}">Project description</p>
 
             <div class="d-flex gap-2 flex-wrap">
-              <span class="badge text-bg-secondary">Java</span>
-              <span class="badge text-bg-secondary">Spring Boot</span>
-              <span class="badge text-bg-secondary">Thymeleaf</span>
-              <span class="badge text-bg-secondary">Bootstrap</span>
+              <span class="badge text-bg-secondary"
+                    th:each="t : ${p.tags()}"
+                    th:text="${t}">Tag</span>
             </div>
           </div>
+
           <div class="card-footer bg-white border-0 pt-0">
-            <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noreferrer">View Repo</a>
+            <a class="btn btn-primary btn-sm"
+              th:if="${p.url() != null and !p.url().isBlank()}"
+              th:href="${p.url()}"
+              target="_blank" rel="noreferrer">
+              View Repo
+            </a>
           </div>
         </div>
       </div>
-
-      <!-- Project 2 -->
-      <div class="col-md-6">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">CanvasLite (POC)</h5>
-            <p class="card-text">
-              Proof-of-concept web app for coursework. Focused on core flows (submission/grading) and clean MVC structure.
-            </p>
-
-            <div class="d-flex gap-2 flex-wrap">
-              <span class="badge text-bg-secondary">Spring MVC</span>
-              <span class="badge text-bg-secondary">Bootstrap</span>
-              <span class="badge text-bg-secondary">POC</span>
-            </div>
-          </div>
-          <div class="card-footer bg-white border-0 pt-0">
-            <a class="btn btn-outline-primary btn-sm" href="#" target="_blank" rel="noreferrer">Details</a>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 </div>
