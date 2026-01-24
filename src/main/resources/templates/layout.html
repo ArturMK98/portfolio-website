@@ -4,20 +4,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title th:text="${pageTitle}">Artur | Portfolio</title>
+  <title th:text="${pageTitle} + ' | Artur'">Artur | Portfolio</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
 
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body class="d-flex flex-column min-vh-100">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
-    <a class="navbar-brand" th:href="@{/}">Artur</a>
-    <div class="navbar-nav ms-auto">
-      <a class="nav-link" th:href="@{/}">Home</a>
-      <a class="nav-link" th:href="@{/projects}">Projects</a>
-      <a class="nav-link" th:href="@{/contact}">Contact</a>
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold" th:href="@{/}">
+      <i class="bi bi-code-slash me-2"></i>Artur
+    </a>
+
+    <!-- Mobile toggle button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link" th:classappend="${pageTitle == 'Home'} ? 'active'" th:href="@{/}">
+            <i class="bi bi-house me-1"></i> Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:classappend="${pageTitle == 'Projects' or pageTitle.startsWith('Project')} ? 'active'" th:href="@{/projects}">
+            <i class="bi bi-folder me-1"></i> Projects
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:classappend="${pageTitle == 'Contact'} ? 'active'" th:href="@{/contact}">
+            <i class="bi bi-envelope me-1"></i> Contact
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
@@ -25,6 +50,46 @@
 <main class="container py-4">
   <div th:replace="${content}"></div>
 </main>
+
+<footer class="bg-dark text-light py-4 mt-auto">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left: Branding -->
+      <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+        <a class="text-light text-decoration-none fw-bold" th:href="@{/}">
+          <i class="bi bi-code-slash me-2"></i>Artur
+        </a>
+        <p class="text-muted small mb-0 mt-1">Building clean, functional software.</p>
+      </div>
+
+      <!-- Center: Social links -->
+      <div class="col-md-4 text-center mb-3 mb-md-0">
+        <div class="d-flex justify-content-center gap-3">
+          <a th:href="${profile?.social?.github}" target="_blank" rel="noreferrer"
+             class="text-light fs-5" title="GitHub">
+            <i class="bi bi-github"></i>
+          </a>
+          <a th:href="${profile?.social?.linkedin}" target="_blank" rel="noreferrer"
+             class="text-light fs-5" title="LinkedIn">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a th:href="'mailto:' + ${profile?.social?.email}"
+             class="text-light fs-5" title="Email">
+            <i class="bi bi-envelope-fill"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Copyright -->
+      <div class="col-md-4 text-center text-md-end">
+        <small class="text-muted">
+          &copy; <span th:text="${#dates.year(#dates.createNow())}">2024</span>
+          <span th:text="${profile?.name}">Artur</span>. All rights reserved.
+        </small>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
