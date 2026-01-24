@@ -4,13 +4,10 @@
 
 <div th:replace="~{layout :: layout(${project.title}, ~{::section})}">
   <section>
-    <!-- Navigation buttons -->
-    <div class="d-flex gap-2 mb-4">
-      <a class="btn btn-outline-primary btn-sm" th:href="@{/}">
-        <i class="bi bi-house me-1"></i> Home
-      </a>
+    <!-- Navigation button -->
+    <div class="mb-4">
       <a class="btn btn-outline-primary btn-sm" th:href="@{/projects}">
-        <i class="bi bi-folder me-1"></i> Projects
+        <i class="bi bi-arrow-left me-1"></i> Back to Projects
       </a>
     </div>
 

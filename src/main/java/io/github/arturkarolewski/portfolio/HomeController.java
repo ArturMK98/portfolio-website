@@ -13,6 +13,7 @@ import io.github.arturkarolewski.portfolio.model.Project;
 import io.github.arturkarolewski.portfolio.service.ProjectService;
 import io.github.arturkarolewski.portfolio.service.ProfileService;
 import io.github.arturkarolewski.portfolio.service.CvService;
+import io.github.arturkarolewski.portfolio.service.AboutService;
 
 @Controller
 public class HomeController {
@@ -20,11 +21,13 @@ public class HomeController {
     private final ProjectService projectService;
     private final ProfileService profileService;
     private final CvService CvService;
+    private final AboutService aboutService;
 
-    public HomeController(ProjectService projectService, ProfileService profileService, CvService CvService) {
+    public HomeController(ProjectService projectService, ProfileService profileService, CvService CvService, AboutService aboutService) {
         this.projectService = projectService;
         this.profileService = profileService;
         this.CvService = CvService;
+        this.aboutService = aboutService;
     }
 
     @GetMapping("/")
@@ -66,5 +69,12 @@ public class HomeController {
         model.addAttribute("cv", CvService.getCv());
         model.addAttribute("profile", profileService.getProfile());
         return "cv";
+    }
+
+    @GetMapping("/about")
+    public String about(Model model) {
+        model.addAttribute("about", aboutService.getAbout());
+        model.addAttribute("profile", profileService.getProfile());
+        return "about";
     }
 }
