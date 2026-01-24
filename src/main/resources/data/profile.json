@@ -1,0 +1,12 @@
+{
+  "name": "Artur",
+  "title": "Developer",
+  "bio": "A developer passionate about building clean, functional software. Explore my projects and see what I've been working on.",
+  "location": "Ireland",
+  "social": {
+    "github": "https://github.com/yourusername",
+    "linkedin": "https://linkedin.com/in/yourusername",
+    "email": "your.email@example.com"
+  },
+  "skills": ["Java", "Spring Boot", "Thymeleaf", "Bootstrap", "HTML", "CSS"]
+}

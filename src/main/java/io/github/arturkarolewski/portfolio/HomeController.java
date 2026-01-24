@@ -11,22 +11,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import io.github.arturkarolewski.portfolio.model.Project;
 import io.github.arturkarolewski.portfolio.service.ProjectService;
+import io.github.arturkarolewski.portfolio.service.ProfileService;
 
 @Controller
 public class HomeController {
 
     private final ProjectService projectService;
+    private final ProfileService profileService;
 
+    public HomeController(ProjectService projectService, ProfileService profileService) {
+        this.projectService = projectService;
+        this.profileService = profileService;
+    }
 
     @GetMapping("/")
     public String home(Model model) {
         List<Project> projects = projectService.getProjects();
         model.addAttribute("featured", projects.stream().limit(2).toList());
+        model.addAttribute("profile", profileService.getProfile());
         return "index";
     }
 
     @GetMapping("/contact")
-    public String contact() {
+    public String contact(Model model) {
+        model.addAttribute("profile", profileService.getProfile());
         return "contact";
     }
 
@@ -39,17 +47,14 @@ public class HomeController {
         }
 
         model.addAttribute("project", project);
+        model.addAttribute("profile", profileService.getProfile());
         return "project-detail";
-}
+    }
 
     @GetMapping("/projects")
     public String projects(Model model) {
         model.addAttribute("projects", projectService.getProjects());
+        model.addAttribute("profile", profileService.getProfile());
         return "projects";
-    }
-
-
-    public HomeController(ProjectService projectService) {
-        this.projectService = projectService;
     }
 }

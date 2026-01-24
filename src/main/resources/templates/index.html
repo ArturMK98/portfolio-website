@@ -6,13 +6,13 @@
   <section>
     <!-- Hero section -->
     <div class="py-5 mb-5 border-bottom">
-      <h1 class="display-4 fw-bold mb-3">Hello, I'm Artur <span class="d-inline-block" style="animation: wave 2s infinite; transform-origin: 70% 70%;">👋</span></h1>
-      <p class="lead text-muted mb-4" style="max-width: 600px;">
+      <h1 class="display-4 fw-bold mb-3">Hello, I'm <span th:text="${profile.name}">Artur</span> <span class="d-inline-block" style="animation: wave 2s infinite; transform-origin: 70% 70%;">👋</span></h1>
+      <p class="lead text-muted mb-4" style="max-width: 600px;" th:text="${profile.bio}">
         A developer passionate about building clean, functional software.
         Explore my projects and see what I've been working on.
       </p>
       <div class="d-flex gap-3 flex-wrap">
-        <a class="btn btn-primary btn-lg" th:href="@{/projects}">
+        <a class="btn btn-outline-primary btn-lg" th:href="@{/projects}">
           <i class="bi bi-folder me-2"></i> View Projects
         </a>
         <a class="btn btn-outline-dark btn-lg" th:href="@{/contact}">
@@ -73,7 +73,7 @@
                       th:text="${t}">Tag</span>
               </div>
 
-              <a class="btn btn-primary btn-sm"
+              <a class="btn btn-outline-primary btn-sm"
                  th:href="@{/projects/{slug}(slug=${p.slug()})}">
                 <i class="bi bi-arrow-right me-1"></i> View Details
               </a>
