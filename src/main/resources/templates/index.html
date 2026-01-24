@@ -4,37 +4,95 @@
 
 <div th:replace="~{layout :: layout('Home', ~{::section})}">
   <section>
-    <h1 class="mb-3">Hello, I'm Artur 👋</h1>
-    <p class="lead">Explore my projects and skills.</p>
-    <a class="btn btn-primary" th:href="@{/projects}">See Projects</a>
-  </section>
-  
-  <section class="mt-4">
-  <h2 class="h4 mb-3">Featured Projects</h2>
+    <!-- Hero section -->
+    <div class="py-5 mb-5 border-bottom">
+      <h1 class="display-4 fw-bold mb-3">Hello, I'm Artur <span class="d-inline-block" style="animation: wave 2s infinite; transform-origin: 70% 70%;">👋</span></h1>
+      <p class="lead text-muted mb-4" style="max-width: 600px;">
+        A developer passionate about building clean, functional software.
+        Explore my projects and see what I've been working on.
+      </p>
+      <div class="d-flex gap-3 flex-wrap">
+        <a class="btn btn-primary btn-lg" th:href="@{/projects}">
+          <i class="bi bi-folder me-2"></i> View Projects
+        </a>
+        <a class="btn btn-outline-dark btn-lg" th:href="@{/contact}">
+          <i class="bi bi-envelope me-2"></i> Contact Me
+        </a>
+      </div>
+    </div>
 
-  <div class="row g-3">
-    <div class="col-md-6" th:each="p : ${featured}">
-      <div class="card h-100">
-        <img th:if="${p.image() != null and !p.image().isBlank()}"
-             th:src="@{${p.image()}}"
-             class="card-img-top" alt="Project image">
+    <!-- Featured Projects section -->
+    <div class="mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 fw-bold mb-0">
+          <i class="bi bi-star-fill text-warning me-2"></i>Featured Projects
+        </h2>
+        <a th:href="@{/projects}" class="btn btn-outline-primary btn-sm">
+          View All <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+      </div>
 
-        <div class="card-body">
-          <h5 class="card-title" th:text="${p.title()}">Title</h5>
-          <p class="card-text" th:text="${p.description()}">Desc</p>
+      <div class="row g-4">
+        <div class="col-md-6" th:each="p : ${featured}">
+          <div class="card h-100 shadow-sm border-0" style="transition: transform 0.2s, box-shadow 0.2s;"
+               onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 .5rem 1rem rgba(0,0,0,.15)';"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
 
-          <a class="btn btn-primary btn-sm"
-             th:href="@{/projects/{slug}(slug=${p.slug()})}">
-            View
-          </a>
+            <!-- Image with fixed height -->
+            <div th:if="${p.image() != null and !p.image().isBlank()}"
+                 class="card-img-top bg-light"
+                 style="height: 200px; overflow: hidden;">
+              <img th:src="@{${p.image()}}"
+                   class="w-100 h-100"
+                   style="object-fit: cover;"
+                   alt="Project image">
+            </div>
+
+            <!-- Placeholder if no image -->
+            <div th:if="${p.image() == null or p.image().isBlank()}"
+                 class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                 style="height: 200px;">
+              <i class="bi bi-code-square text-muted" style="font-size: 3rem;"></i>
+            </div>
+
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h5 class="card-title fw-semibold mb-0" th:text="${p.title()}">Title</h5>
+                <span th:if="${p.year() != null and !p.year().isBlank()}"
+                      class="badge text-bg-light border small"
+                      th:text="${p.year()}">2024</span>
+              </div>
+              <p class="card-text text-muted" th:text="${p.description()}">Desc</p>
+
+              <!-- Tags -->
+              <div class="d-flex gap-1 flex-wrap mb-3">
+                <span class="badge rounded-pill small"
+                      th:each="t : ${p.tags()}"
+                      th:with="hue=${T(java.lang.Math).abs(t.hashCode()) % 360}"
+                      th:style="'background-color: hsl(' + ${hue} + ', 65%, 90%); color: hsl(' + ${hue} + ', 65%, 30%);'"
+                      th:text="${t}">Tag</span>
+              </div>
+
+              <a class="btn btn-primary btn-sm"
+                 th:href="@{/projects/{slug}(slug=${p.slug()})}">
+                <i class="bi bi-arrow-right me-1"></i> View Details
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+
+  </section>
 </div>
+
+<style>
+  @keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(20deg); }
+    75% { transform: rotate(-10deg); }
+  }
+</style>
 
 </body>
 </html>
-
-
