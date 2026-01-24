@@ -14,5 +14,22 @@
     "tags": ["Spring MVC", "Bootstrap", "POC"],
     "url": "",
     "image": "/img/canvaslite_temp.png"
+  },
+  {
+    "slug": "sample-project",
+    "title": "Sample Project",
+    "description": "A sample project demonstrating all available fields.",
+    "longDescription": "This is a longer description that appears on the project detail page. It provides more context about the project, including its goals, challenges faced during development, and lessons learned. You can write multiple sentences here to fully explain the project.",
+    "tags": ["Java", "Spring Boot", "REST API", "PostgreSQL"],
+    "features": [
+      "User authentication and authorization",
+      "RESTful API endpoints",
+      "Database integration with PostgreSQL",
+      "Responsive frontend design"
+    ],
+    "url": "https://github.com/username/sample-project",
+    "demoUrl": "https://sample-project-demo.com",
+    "image": "/img/software.png",
+    "year": "2024"
   }
 ]
