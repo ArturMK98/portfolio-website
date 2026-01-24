@@ -6,21 +6,33 @@
   <section>
     <!-- Hero section -->
     <div class="py-5 mb-5 border-bottom">
-      <h1 class="display-4 fw-bold mb-3">Hello, I'm <span th:text="${profile.name}">Artur</span> <span class="d-inline-block" style="animation: wave 2s infinite; transform-origin: 70% 70%;">👋</span></h1>
-      <p class="lead text-muted mb-4" style="max-width: 600px;" th:text="${profile.bio}">
-        A developer passionate about building clean, functional software.
-        Explore my projects and see what I've been working on.
-      </p>
-      <div class="d-flex gap-3 flex-wrap">
-        <a class="btn btn-outline-primary btn-lg" th:href="@{/projects}">
-          <i class="bi bi-folder me-2"></i> View Projects
-        </a>
-        <a class="btn btn-outline-secondary btn-lg" th:href="@{/cv}">
-          <i class="bi bi-file-person me-2"></i> View My CV
-        </a>
-        <a class="btn btn-outline-dark btn-lg" th:href="@{/contact}">
-          <i class="bi bi-envelope me-2"></i> Contact Me
-        </a>
+      <div class="row align-items-center g-5">
+        <!-- Text -->
+        <div class="col-lg-7">
+          <h1 class="display-4 fw-bold mb-3">Hello, I'm <span th:text="${profile.name}">Artur</span> <span class="d-inline-block" style="animation: wave 2s infinite; transform-origin: 70% 70%;">👋</span></h1>
+          <p class="lead text-muted mb-4" th:text="${profile.bio}">
+            A developer passionate about building clean, functional software.
+            Explore my projects and see what I've been working on.
+          </p>
+          <div class="d-flex gap-3 flex-wrap">
+            <a class="btn btn-outline-primary btn-lg" th:href="@{/projects}">
+              <i class="bi bi-folder me-2"></i> View Projects
+            </a>
+            <a class="btn btn-outline-secondary btn-lg" th:href="@{/cv}">
+              <i class="bi bi-file-person me-2"></i> View My CV
+            </a>
+            <a class="btn btn-outline-dark btn-lg" th:href="@{/contact}">
+              <i class="bi bi-envelope me-2"></i> Contact Me
+            </a>
+          </div>
+        </div>
+        <!-- Photo -->
+        <div class="col-lg-5 text-center">
+          <img src="/img/profile.jpg"
+               alt="Profile photo"
+               class="rounded-circle shadow"
+               style="width: 280px; height: 280px; object-fit: cover;">
+        </div>
       </div>
     </div>
 
@@ -91,9 +103,15 @@
 
 <style>
   @keyframes wave {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(20deg); }
-    75% { transform: rotate(-10deg); }
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+    60% { transform: rotate(0deg); }
+    80% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
   }
 </style>
 
