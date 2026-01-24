@@ -38,6 +38,11 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" th:classappend="${pageTitle == 'Cv'} ? 'active'" th:href="@{/cv}">
+            <i class="bi bi-file-person me-1"></i> CV
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" th:classappend="${pageTitle == 'Contact'} ? 'active'" th:href="@{/contact}">
             <i class="bi bi-envelope me-1"></i> Contact
           </a>

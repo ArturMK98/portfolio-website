@@ -12,16 +12,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import io.github.arturkarolewski.portfolio.model.Project;
 import io.github.arturkarolewski.portfolio.service.ProjectService;
 import io.github.arturkarolewski.portfolio.service.ProfileService;
+import io.github.arturkarolewski.portfolio.service.CvService;
 
 @Controller
 public class HomeController {
 
     private final ProjectService projectService;
     private final ProfileService profileService;
+    private final CvService CvService;
 
-    public HomeController(ProjectService projectService, ProfileService profileService) {
+    public HomeController(ProjectService projectService, ProfileService profileService, CvService CvService) {
         this.projectService = projectService;
         this.profileService = profileService;
+        this.CvService = CvService;
     }
 
     @GetMapping("/")
@@ -56,5 +59,12 @@ public class HomeController {
         model.addAttribute("projects", projectService.getProjects());
         model.addAttribute("profile", profileService.getProfile());
         return "projects";
+    }
+
+    @GetMapping("/cv")
+    public String cv(Model model) {
+        model.addAttribute("cv", CvService.getCv());
+        model.addAttribute("profile", profileService.getProfile());
+        return "cv";
     }
 }

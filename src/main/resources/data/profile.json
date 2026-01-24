@@ -8,5 +8,27 @@
     "linkedin": "https://www.linkedin.com/in/arturmk98/",
     "email": "karolewski.artur@gmail.com"
   },
-  "skills": ["Java", "Spring Boot", "Thymeleaf", "Bootstrap", "HTML", "CSS"]
+  "skills": [
+    "Java",
+    "Spring Boot",
+    "REST APIs",
+    "SQL",
+    "JSON",
+    "Python",
+
+    "Blue Prism",
+    "Automation Anywhere",
+    "Microsoft Power Automate",
+    "API Testing (Postman)",
+    "Software Testing & QA",
+
+    "Git",
+    "GitHub",
+    "VS Code",
+
+    "HTML",
+    "CSS",
+    "Thymeleaf",
+    "Bootstrap"
+  ]
 }

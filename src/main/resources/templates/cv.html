@@ -1,0 +1,130 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:replace="~{layout :: layout('Cv', ~{::section})}">
+  <section>
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-start mb-5">
+      <div>
+        <h1 class="display-5 fw-bold">Curriculum Vitae</h1>
+        <p class="lead text-muted">My professional background and qualifications</p>
+      </div>
+      <a href="#" class="btn btn-primary d-none d-md-inline-flex align-items-center">
+        <i class="bi bi-download me-2"></i> Download PDF
+      </a>
+    </div>
+
+    <!-- Summary -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-4">
+        <h2 class="h4 fw-bold mb-3">
+          <i class="bi bi-person-circle me-2 text-primary"></i>Summary
+        </h2>
+        <p class="mb-0 text-muted" th:text="${cv.summary}">Summary goes here.</p>
+      </div>
+    </div>
+
+    <!-- Skills (from profile) -->
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-4">
+        <h2 class="h4 fw-bold mb-3">
+          <i class="bi bi-tools me-2 text-primary"></i>Skills
+        </h2>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge rounded-pill fs-6 py-2 px-3"
+                th:each="skill : ${profile.skills}"
+                th:with="hue=${T(java.lang.Math).abs(skill.hashCode()) % 360}"
+                th:style="'background-color: hsl(' + ${hue} + ', 65%, 90%); color: hsl(' + ${hue} + ', 65%, 30%);'"
+                th:text="${skill}">Skill</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="card border-0 shadow-sm mb-4" th:if="${cv.experience != null and !cv.experience.isEmpty()}">
+      <div class="card-body p-4">
+        <h2 class="h4 fw-bold mb-4">
+          <i class="bi bi-briefcase me-2 text-primary"></i>Experience
+        </h2>
+        <div th:each="exp, iterStat : ${cv.experience}">
+          <div th:classappend="${!iterStat.last} ? 'mb-4 pb-4 border-bottom' : ''">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div>
+                <h3 class="h5 fw-semibold mb-1" th:text="${exp.title}">Job Title</h3>
+                <p class="text-muted mb-0">
+                  <span th:text="${exp.company}">Company</span>
+                  <span th:if="${exp.location != null}"> &middot; <span th:text="${exp.location}">Location</span></span>
+                </p>
+              </div>
+              <span class="badge text-bg-light border small">
+                <span th:text="${exp.startDate}">Start</span> - <span th:text="${exp.endDate}">End</span>
+              </span>
+            </div>
+            <p class="text-muted mb-2" th:if="${exp.description != null}" th:text="${exp.description}">Description</p>
+            <ul class="mb-0" th:if="${exp.highlights != null and !exp.highlights.isEmpty()}">
+              <li th:each="highlight : ${exp.highlights}" th:text="${highlight}">Highlight</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="card border-0 shadow-sm mb-4" th:if="${cv.education != null and !cv.education.isEmpty()}">
+      <div class="card-body p-4">
+        <h2 class="h4 fw-bold mb-4">
+          <i class="bi bi-mortarboard me-2 text-primary"></i>Education
+        </h2>
+        <div th:each="edu, iterStat : ${cv.education}">
+          <div th:classappend="${!iterStat.last} ? 'mb-4 pb-4 border-bottom' : ''">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div>
+                <h3 class="h5 fw-semibold mb-1" th:text="${edu.degree}">Degree</h3>
+                <p class="text-muted mb-0">
+                  <span th:text="${edu.institution}">Institution</span>
+                  <span th:if="${edu.location != null}"> &middot; <span th:text="${edu.location}">Location</span></span>
+                </p>
+              </div>
+              <span class="badge text-bg-light border small">
+                <span th:text="${edu.startDate}">Start</span> - <span th:text="${edu.endDate}">End</span>
+              </span>
+            </div>
+            <p class="text-muted mb-0" th:if="${edu.description != null}" th:text="${edu.description}">Description</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="card border-0 shadow-sm mb-4" th:if="${cv.certifications != null and !cv.certifications.isEmpty()}">
+      <div class="card-body p-4">
+        <h2 class="h4 fw-bold mb-3">
+          <i class="bi bi-award me-2 text-primary"></i>Certifications
+        </h2>
+        <ul class="mb-0">
+          <li th:each="cert : ${cv.certifications}" th:text="${cert}">Certification</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="card border-0 shadow-sm" th:if="${cv.languages != null and !cv.languages.isEmpty()}">
+      <div class="card-body p-4">
+        <h2 class="h4 fw-bold mb-3">
+          <i class="bi bi-translate me-2 text-primary"></i>Languages
+        </h2>
+        <div class="d-flex flex-wrap gap-3">
+          <div th:each="lang : ${cv.languages}" class="d-flex align-items-center">
+            <span class="fw-semibold me-2" th:text="${lang.name}">Language</span>
+            <span class="badge text-bg-secondary"th:text="${lang.level}">Level</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "summary": "Software QE Analyst with experience in automation and software quality, currently developing strong backend skills in Java and Spring Boot. Background in RPA, API integration, and data validation, with a growing focus on building reliable, maintainable software systems.",
+  "experience": [
+    {
+      "title": "Software QE Analyst (Automation & RPA)",
+      "company": "Expleo Group",
+      "location": "Dublin City, Co. Dublin, Ireland (Remote)",
+      "startDate": "Jul 2023",
+      "endDate": "Present",
+      "description": "Focus on designing, developing, testing, and supporting automation solutions across enterprise systems. The role involves building RPA workflows, integrating with REST APIs, validating data accuracy, and deploying production-ready automations that deliver measurable business value.",
+      "highlights": [
+        "Developed and deployed automation solutions using Blue Prism, Automation Anywhere, and Microsoft Power Automate.",
+        "Built end-to-end automation workflows integrating with enterprise systems and REST APIs, validated using Postman.",
+        "Performed functional testing and data validation to ensure accuracy and reliability of automated processes.",
+        "Contributed to automation initiatives generating over €1 million in business savings over a one-year period.",
+        "Delivered high-impact solutions including a one-off automation saving €25k within two weeks.",
+        "Created technical documentation and onboarding guides to support team knowledge sharing.",
+        "Collaborated with cross-functional teams to analyse requirements and resolve production issues."
+      ]
+    },
+    {
+      "title": "Junior Automation Engineer (RPA)",
+      "company": "PTSB",
+      "location": "Dublin City, Co. Dublin, Ireland (Remote)",
+      "startDate": "Sep 2021",
+      "endDate": "Jul 2023",
+      "description": "Worked as a Junior Automation Engineer designing, developing, and supporting robotic process automations using Blue Prism to improve operational efficiency across business processes.",
+      "highlights": [
+        "Development and deployment of robotic process automations using Blue Prism.",
+        "Testing, debugging, and optimisation of automation workflows to ensure reliable and efficient execution.",
+        "Enhancement and maintenance of existing automations in response to evolving business requirements.",
+        "Creation of technical documentation and user guides to support knowledge transfer and onboarding.",
+        "Collaboration with business users and stakeholders during deployment and post-production support."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Science - Computing • Secure Software Engineering Major",
+      "institution": "Dublin City University",
+      "location": "Dublin City, Co. Dublin, Ireland",
+      "startDate": "2025",
+      "endDate": "2027",
+      "description": "The programme focuses on building advanced software engineering skills with security embedded throughout the entire development lifecycle, from design to deployment. It covers the development, testing, and analysis of secure software systems, preparing students to design and build robust, resilient, and security-focused applications in modern computing environments."
+    },
+    {
+      "degree": "Bachelor of Science - Robotics and Intelligent Devices",
+      "institution": "Maynooth University",
+      "location": "Maynooth, Co. Kildare, Ireland",
+      "startDate": "2017",
+      "endDate": "2021",
+      "description": "The programme focuses on the design, implementation, and application of intelligent physical systems, including robots, autonomous devices, smart sensors, and Internet-of-Things technologies. It combines electronic engineering and computer science to create systems that can interact with humans and their environment. A strong emphasis on project-based learning and laboratory work allows students to develop practical skills in hardware and software design, systems integration, teamwork, and technical problem-solving."
+    }
+  ],
+  "certifications": ["ISTQB Foundation Level Certification","30 days of Postman - for developers","Blue Prism Certified Professional Developer", "Automation Anywhere Certified Advanced RPA Professional"],
+  "languages": [
+    {"name": "English", "level": "Fluent"},
+    {"name": "Polish", "level": "Native"},
+    {"name": "Russian", "level": "Basic"}
+  ]
+}
