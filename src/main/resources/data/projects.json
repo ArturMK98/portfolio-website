@@ -1,0 +1,18 @@
+[
+  {
+    "slug": "portfolio-website",
+    "title": "Portfolio Website",
+    "description": "Spring Boot + Thymeleaf portfolio site with reusable layout and Bootstrap UI.",
+    "tags": ["Java", "Spring Boot", "Thymeleaf", "Bootstrap"],
+    "url": "https://github.com/ArturMK98/portfolio-website",
+    "image": "/img/portfolio.png"
+  },
+  {
+    "slug": "canvaslite-poc",
+    "title": "CanvasLite (POC)",
+    "description": "Proof-of-concept web app focused on core flows and clean MVC structure.",
+    "tags": ["Spring MVC", "Bootstrap", "POC"],
+    "url": "",
+    "image": "/img/canvaslite_temp.png"
+  }
+]
