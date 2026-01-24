@@ -19,8 +19,10 @@
             </a>
             <p class="card-text" th:text="${p.description()}">Project description</p>
             <div class="d-flex gap-2 flex-wrap">
-              <span class="badge text-bg-secondary"
-                    th:each="t : ${p.tags()}" 
+              <span class="badge rounded-pill"
+                    th:each="t : ${p.tags()}"
+                    th:with="hue=${T(java.lang.Math).abs(t.hashCode()) % 360}"
+                    th:style="'background-color: hsl(' + ${hue} + ', 65%, 90%); color: hsl(' + ${hue} + ', 65%, 30%);'"
                     th:text="${t}">Tag</span>
             </div>
           </div>

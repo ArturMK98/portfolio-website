@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.http.HttpStatus;
 
 import io.github.arturkarolewski.portfolio.model.Project;
 import io.github.arturkarolewski.portfolio.service.ProjectService;

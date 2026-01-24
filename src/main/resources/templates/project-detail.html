@@ -1,39 +1,90 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title th:text="${project.title}">Project</title>
-</head>
-
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div class="container py-4">
 
-  <a class="text-decoration-none" th:href="@{/projects}">&larr; Back to Projects</a>
+<div th:replace="~{layout :: layout(${project.title}, ~{::section})}">
+  <section>
+    <!-- Navigation buttons -->
+    <div class="d-flex gap-2 mb-4">
+      <a class="btn btn-outline-primary btn-sm" th:href="@{/}">
+        <i class="bi bi-house me-1"></i> Home
+      </a>
+      <a class="btn btn-outline-primary btn-sm" th:href="@{/projects}">
+        <i class="bi bi-folder me-1"></i> Projects
+      </a>
+    </div>
 
-  <div class="mt-3">
-    <h1 class="display-5" th:text="${project.title}">Project Title</h1>
-    <p class="lead" th:text="${project.description}">Description</p>
+    <!-- Hero image -->
+    <div th:if="${project.image != null and !project.image.isBlank()}" class="mb-4">
+      <img class="img-fluid rounded shadow w-100" style="max-height: 400px; object-fit: cover;"
+           th:src="@{${project.image}}"
+           alt="Project image">
+    </div>
 
-    <div class="mb-3">
-      <span class="badge bg-secondary me-1"
+    <!-- Header section -->
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+      <h1 class="display-5 fw-bold mb-0" th:text="${project.title}">Project Title</h1>
+      <span th:if="${project.year != null and !project.year.isBlank()}"
+            class="badge text-bg-light border fs-6" th:text="${project.year}">2024</span>
+    </div>
+
+    <p class="lead text-muted" th:text="${project.description}">Short description</p>
+
+    <!-- Tags -->
+    <div class="mb-4">
+      <span class="badge rounded-pill me-1"
             th:each="tag : ${project.tags}"
+            th:with="hue=${T(java.lang.Math).abs(tag.hashCode()) % 360}"
+            th:style="'background-color: hsl(' + ${hue} + ', 65%, 90%); color: hsl(' + ${hue} + ', 65%, 30%);'"
             th:text="${tag}">Tag</span>
     </div>
 
-    <img class="img-fluid rounded mb-3"
-         th:if="${project.image != null and !project.image.isBlank()}"
-         th:src="@{${project.image}}"
-         alt="Project image">
+    <!-- Action buttons -->
+    <div class="d-flex flex-wrap gap-2 mb-5">
+      <a class="btn btn-primary"
+         th:if="${project.url != null and !project.url.isBlank()}"
+         th:href="${project.url}"
+         target="_blank" rel="noreferrer">
+        <i class="bi bi-github me-1"></i> View Repository
+      </a>
+      <a class="btn btn-outline-primary"
+         th:if="${project.demoUrl != null and !project.demoUrl.isBlank()}"
+         th:href="${project.demoUrl}"
+         target="_blank" rel="noreferrer">
+        <i class="bi bi-box-arrow-up-right me-1"></i> Live Demo
+      </a>
+    </div>
 
-    <a class="btn btn-primary"
-       th:if="${project.url != null and !project.url.isBlank()}"
-       th:href="${project.url}"
-       target="_blank">
-      View Repo
-    </a>
-  </div>
+    <hr class="my-4">
 
+    <div class="row">
+      <!-- Long description -->
+      <div class="col-lg-8" th:if="${project.longDescription != null and !project.longDescription.isBlank()}">
+        <h2 class="h4 mb-3">About this project</h2>
+        <p class="text-body-secondary" th:text="${project.longDescription}">
+          Detailed description of the project goes here.
+        </p>
+      </div>
+
+      <!-- Features list -->
+      <div th:classappend="${project.longDescription != null and !project.longDescription.isBlank()} ? 'col-lg-4' : 'col-12'"
+           th:if="${project.features != null and !project.features.isEmpty()}">
+        <div class="card border-0 bg-light">
+          <div class="card-body">
+            <h2 class="h5 mb-3"><i class="bi bi-check2-circle me-2"></i>Key Features</h2>
+            <ul class="list-unstyled mb-0">
+              <li th:each="feature : ${project.features}" class="mb-2">
+                <i class="bi bi-check-lg text-success me-2"></i>
+                <span th:text="${feature}">Feature</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
 </div>
+
 </body>
 </html>

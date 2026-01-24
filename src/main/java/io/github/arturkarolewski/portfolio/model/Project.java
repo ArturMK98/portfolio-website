@@ -6,7 +6,11 @@ public record Project(
         String slug,
         String title,
         String description,
+        String longDescription,
         List<String> tags,
+        List<String> features,
         String url,
-        String image
+        String demoUrl,
+        String image,
+        String year
 ) {}
