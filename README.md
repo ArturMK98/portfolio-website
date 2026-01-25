@@ -105,15 +105,6 @@ To use your own Formspree account, replace the form endpoint in `contact.html`:
 
 ---
 
-## Future Improvements
-
-- Database-backed project storage
-- Admin panel for managing portfolio content
-- Authentication and authorization
-- REST API for exposing project data
-
----
-
 ## Screenshots
 
 Screenshots will be added as the project evolves.
