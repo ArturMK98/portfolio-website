@@ -1,0 +1,9 @@
+<svg viewBox="0 0 82 40" xmlns="http://www.w3.org/2000/svg">
+  <rect width="82" height="40" fill="#2d2d2d" rx="3" />
+  <g transform="translate(8, 20)">
+    <path d="M 5 -5 L 0 0 L 5 5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 8.5 7 L 12.5 -7" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 16 -5 L 21 0 L 16 5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="34" y="25.5" fill="white" font-size="16" font-weight="600" font-family="system-ui, -apple-system, sans-serif" letter-spacing="-0.3">Artur</text>
+</svg>
