@@ -104,7 +104,3 @@ To use your own Formspree account, replace the form endpoint in `contact.html`:
 ```
 
 ---
-
-## Screenshots
-
-Screenshots will be added as the project evolves.
