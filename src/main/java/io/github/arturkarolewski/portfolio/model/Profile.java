@@ -10,9 +10,11 @@ public record Profile(
         Social social,
         List<String> skills
 ) {
+    // Links are grouped under Social for a tidy JSON shape.
     public record Social(
             String github,
             String linkedin,
             String email
     ) {}
+    // Record matches the structure of data/profile.json.
 }

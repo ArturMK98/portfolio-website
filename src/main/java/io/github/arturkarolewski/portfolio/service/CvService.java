@@ -10,9 +10,11 @@ import java.io.InputStream;
 @Service
 public class CvService {
 
+    // CV is static data, so a straightforward ObjectMapper is enough.
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public Cv getCv() {
+        // Content in data/cv.json.
         try (InputStream in = new ClassPathResource("data/cv.json").getInputStream()) {
             return objectMapper.readValue(in, Cv.class);
         } catch (Exception e) {

@@ -12,10 +12,11 @@ import java.util.List;
 @Service
 public class ProjectService {
 
-    // No Spring injection needed (avoids the ObjectMapper-bean issue completely)
+    // Keep it local; this app doesn't need a shared mapper or extra config.
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public List<Project> getProjects() {
+        // Read the JSON on each call so updates in the file show up on refresh.
         try (InputStream in = new ClassPathResource("data/projects.json").getInputStream()) {
             return objectMapper.readValue(in, new TypeReference<List<Project>>() {});
         } catch (Exception e) {
@@ -24,6 +25,7 @@ public class ProjectService {
     }
 
     public Project getBySlug(String slug) {
+        // Small list, simple stream is fine here.
         return getProjects().stream()
                 .filter(p -> p.slug().equals(slug))
                 .findFirst()

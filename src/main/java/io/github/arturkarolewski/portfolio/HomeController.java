@@ -18,20 +18,22 @@ import io.github.arturkarolewski.portfolio.service.AboutService;
 @Controller
 public class HomeController {
 
+    // Services are thin wrappers around JSON data files on the classpath.
     private final ProjectService projectService;
     private final ProfileService profileService;
-    private final CvService CvService;
+    private final CvService cvService;
     private final AboutService aboutService;
 
-    public HomeController(ProjectService projectService, ProfileService profileService, CvService CvService, AboutService aboutService) {
+    public HomeController(ProjectService projectService, ProfileService profileService, CvService cvService, AboutService aboutService) {
         this.projectService = projectService;
         this.profileService = profileService;
-        this.CvService = CvService;
+        this.cvService = cvService;
         this.aboutService = aboutService;
     }
 
     @GetMapping("/")
     public String home(Model model) {
+        // Home page shows the two most recent/featured projects.
         List<Project> projects = projectService.getProjects();
         model.addAttribute("featured", projects.stream().limit(2).toList());
         model.addAttribute("profile", profileService.getProfile());
@@ -46,9 +48,11 @@ public class HomeController {
 
     @GetMapping("/projects/{slug}")
     public String projectDetail(@PathVariable String slug, Model model) {
+        // Project pages are addressed by slug from the JSON file.
         Project project = projectService.getBySlug(slug);
 
         if (project == null) {
+            // Bubble up a 404 so the error page handles missing projects.
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
@@ -66,13 +70,15 @@ public class HomeController {
 
     @GetMapping("/cv")
     public String cv(Model model) {
-        model.addAttribute("cv", CvService.getCv());
+        // This pulls from data/cv.json.
+        model.addAttribute("cv", cvService.getCv());
         model.addAttribute("profile", profileService.getProfile());
         return "cv";
     }
 
     @GetMapping("/about")
     public String about(Model model) {
+        // Personal bio, content in data/about.json.
         model.addAttribute("about", aboutService.getAbout());
         model.addAttribute("profile", profileService.getProfile());
         return "about";

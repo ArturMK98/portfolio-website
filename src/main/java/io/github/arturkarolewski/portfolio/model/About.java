@@ -5,4 +5,6 @@ public record About(
         String introduction,
         String whatIDo,
         String interests
-) {}
+) {
+    // Record matches the structure of data/about.json.
+}

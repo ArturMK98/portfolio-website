@@ -10,9 +10,11 @@ import java.io.InputStream;
 @Service
 public class ProfileService {
 
+    // Simple JSON -> POJO mapping, no special config needed.
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public Profile getProfile() {
+        // Content in data/profile.json.
         try (InputStream in = new ClassPathResource("data/profile.json").getInputStream()) {
             return objectMapper.readValue(in, Profile.class);
         } catch (Exception e) {

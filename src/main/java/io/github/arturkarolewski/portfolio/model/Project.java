@@ -13,4 +13,6 @@ public record Project(
         String demoUrl,
         String image,
         String year
-) {}
+) {
+    // Record matches the structure of data/projects.json.
+}

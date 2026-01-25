@@ -10,9 +10,11 @@ import java.io.InputStream;
 @Service
 public class AboutService {
 
+    // Lightweight loader for the "About" section.
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public About getAbout() {
+        // Content in data/about.json.
         try (InputStream in = new ClassPathResource("data/about.json").getInputStream()) {
             return objectMapper.readValue(in, About.class);
         } catch (Exception e) {

@@ -32,4 +32,5 @@ public record Cv(
             String name,
             String level
     ) {}
+    // Record matches the structure of data/cv.json.
 }
